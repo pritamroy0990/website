@@ -45,4 +45,17 @@ Then visit `http://localhost:8000`.
 ## Production limitation
 This package is a complete static website implementation, but it does not include a server, database, real CRM integration, image upload backend, online booking system, analytics, or deployment configuration. The estimate form uses a mailto workflow until a verified business email or form endpoint is configured.
 
-##
+
+## Stripe online payments
+The main navigation now includes **Make a Payment** and `payment.html` provides a customer payment form. Checkout is created securely on the server using Stripe Checkout; the Stripe secret key is never sent to the browser. The payment form currently charges in **USD** and accepts an amount agreed with the business.
+
+### Configure before launch
+1. Install Node.js 18 or later.
+2. Copy `.env.example` to `.env`.
+3. Create or access the business Stripe account and add its **test** secret key as `STRIPE_SECRET_KEY`. Never put a secret key in HTML/JavaScript or commit `.env`.
+4. Set `PUBLIC_SITE_URL` to the real production HTTPS domain.
+5. Run `npm install`, then `npm start`. Deploy the Node server to a host that supports Node.js and set the environment variables in its dashboard. A static-only host cannot run this Stripe endpoint.
+6. Test checkout with Stripe test mode and Stripe test card `4242 4242 4242 4242`, any future expiry, and any CVC. Switch to the live secret key only after the business has completed Stripe onboarding and tested the full flow.
+7. Configure a Stripe webhook for `checkout.session.completed` and reconcile successful payments against invoices before treating an order as paid. The success return page alone is not proof of payment.
+
+Stripe processing fees are charged by Stripe and vary by country, payment method, and account agreement. This implementation is a one-time Checkout flow, not recurring billing. Currency is currently USD; confirm the merchant account's supported country/currency before launch.
