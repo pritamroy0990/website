@@ -44,3 +44,5 @@ Then visit `http://localhost:8000`.
 
 ## Production limitation
 This package is a complete static website implementation, but it does not include a server, database, real CRM integration, image upload backend, online booking system, analytics, or deployment configuration. The estimate form uses a mailto workflow until a verified business email or form endpoint is configured.
+
+##
