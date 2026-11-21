@@ -9,3 +9,7 @@
 .form-status:not([hidden]){display:block;margin-top:14px;padding:14px 16px;border:1px solid #b8c8b5;background:#eef3f8;color:#23405c;border-radius:4px;line-height:1.5}
 button:disabled{opacity:.65;cursor:wait}
 .primary-nav a.active:not(.nav-cta){color:var(--color-accent,#a88750)}
+
+.normal-em {
+  font-style: normal;
+}
